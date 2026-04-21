@@ -5,7 +5,7 @@ import com.sist.commons.DBUtil;
 import com.sist.vo.BoardVO;
 public class BoardDAO {
 	private DBUtil db=new DBUtil();
-		private Connection conn;
+	private Connection conn;
 	private PreparedStatement ps;
 	private static BoardDAO dao; // 싱글턴
 	public static BoardDAO newInstance() {
@@ -35,6 +35,7 @@ public class BoardDAO {
 				vo.setHit(rs.getInt(5));
 				list.add(vo);
 			}
+			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
