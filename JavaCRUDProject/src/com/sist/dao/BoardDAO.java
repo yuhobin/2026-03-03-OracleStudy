@@ -44,7 +44,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		finally {
-			db.disConnction(conn, ps);
+			db.disConnection(conn, ps);
 		}
 		return list;
 	}
@@ -75,7 +75,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		finally {
-			db.disConnction(conn, ps);
+			db.disConnection(conn, ps);
 		}
 		return total;
 		
@@ -107,7 +107,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		finally {
-			db.disConnction(conn, ps);
+			db.disConnection(conn, ps);
 		}
 	}
 	// 상세보기 
@@ -142,7 +142,7 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		finally {
-			db.disConnction(conn, ps);
+			db.disConnection(conn, ps);
 		}
 		return vo;
 	}
