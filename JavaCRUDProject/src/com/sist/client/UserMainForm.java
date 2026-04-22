@@ -33,6 +33,7 @@ public class UserMainForm extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==mp.b5) {  // 사내 게시판
 			cp.card.show(cp, "BLIST");
+			cp.bList.print();
 		}
 		else if(e.getSource()==mp.b1) { // Home
 			cp.card.show(cp, "HOME");
