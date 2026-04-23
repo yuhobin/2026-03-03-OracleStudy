@@ -54,7 +54,7 @@ public class BoardDAO {
 		try {
 			// 1. 연결
 			conn=db.getConnection();
-			// 2. SQL문장을 만ㄷㄴ다
+			// 2. SQL문장을 만든다
 			String sql="SELECT CEIL(COUNT(*)/10.0) as total FROM board";
 			// 3. 오라클로 전송
 			ps=conn.prepareStatement(sql);
@@ -145,6 +145,38 @@ public class BoardDAO {
 			db.disConnection(conn, ps);
 		}
 		return vo;
+	}
+	// 수정
+	// 삭제 
+	public boolean board_delete(int no, String pwd) {
+		boolean bCheck=false; // => 비번 맞다면 true, 틀리다면 false
+		try {
+			// 연결
+			conn=db.getConnection();
+			// SQL 전송
+			String sql="SELECT pwd FROM board WHERE no=?";
+			ps=conn.prepareStatement(sql);
+			// ?에 값을 채운다
+			ps.setInt(1, no);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			String db_pwd=rs.getString(1);
+			rs.close();
+			
+			if(db_pwd.equals(pwd)) {  // 본인인지 확인
+				bCheck=true;
+				sql="DELETE FROM board WHERE no=?";
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, no);
+				ps.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			db.disConnection(conn, ps);
+		}
+		return bCheck;
 	}
 	
 //	public static void main(String[] args) {
