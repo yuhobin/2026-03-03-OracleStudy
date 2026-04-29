@@ -49,7 +49,7 @@ public class MyPageForm extends JPanel implements ActionListener, MouseListener 
         // 3. 테이블 및 스크롤팬 설정
         table = new JTable(model);
         table.getTableHeader().setReorderingAllowed(false); // 컬럼 이동 금지
-        table.setRowHeight(40); // 도서 표지를 위해 행 높이 조절
+        table.setRowHeight(40); 
         JScrollPane js = new JScrollPane(table);
 
         // 4. 레이아웃 배치
