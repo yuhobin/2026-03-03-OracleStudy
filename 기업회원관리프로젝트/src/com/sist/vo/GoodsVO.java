@@ -19,4 +19,6 @@ import lombok.Data;
 public class GoodsVO {
 	private int no, goods_discount, hit;
 	private String goods_name, goods_sub, goods_price, goods_first_price, goods_delivery, goods_poster;
+	
+	// 조인 처리 => 클래스 포함한다 
 }

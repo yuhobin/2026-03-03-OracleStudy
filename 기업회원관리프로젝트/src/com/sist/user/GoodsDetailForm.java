@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.sist.commons.ImageChange;
 import com.sist.dao.GoodsDAO;
+import com.sist.vo.BuyVO;
 import com.sist.vo.GoodsVO;
 
 public class GoodsDetailForm extends JPanel
@@ -83,6 +84,7 @@ implements ActionListener
          box.addItem(4);
          box.addItem(5);
          b1=new JButton("구매");
+         b1.setEnabled(false);
          b2=new JButton("목록");
         	 
         	 
@@ -90,6 +92,10 @@ implements ActionListener
          p.add(box);p.add(b1);p.add(b2);
          p.setBounds(330, 200, 435, 35);
          add(p);
+         
+         
+         b2.addActionListener(this);
+         b1.addActionListener(this);
     }
     public void print(int type,int gno)
     {
@@ -112,12 +118,37 @@ implements ActionListener
     				   300, 200);
     		poster.setIcon(new ImageIcon(img));
     	}catch(Exception ex) {}
+    	
+    	b1.setEnabled(UserMainFrame.bLogin);
     }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==b2) {
+		if(e.getSource()==b2)
+		{
 			cp.card.show(cp, "HOME");
+		}
+		else if(e.getSource()==b1) {
+			BuyVO vo=new BuyVO();
+			vo.setGno(gno);
+			vo.setType(type);
+			// id, 수량, 가격
+			vo.setId(cp.myId);
+			// 수량
+			int account=(int)box.getSelectedItem();
+			vo.setAccount(account);
+			String p=price.getText();
+			p=p.replaceAll("[^0-9]", "");
+			// 35,000원 => 35000
+			/*
+			 * 	[^0-9] => 숫자를 제외
+			 * 	^[0-9] => 숫자로 시작
+			 */
+			vo.setPrice(Integer.parseInt(p));
+			dao.goodsBuyData(vo);
+			JOptionPane.showMessageDialog(this, "구매되었습니다!!");
+			cp.card.show(cp, "MYPAGE");
+			cp.mf.print();
 		}
 	}
 }
