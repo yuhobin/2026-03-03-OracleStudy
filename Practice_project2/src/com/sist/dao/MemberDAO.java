@@ -3,7 +3,7 @@ import java.sql.*;
 import java.util.*;
 
 
-import com.sist.commons.DBUtil;
+
 /*
  *   ***아이디 중복 체크 
  *   ***우편번호 검색 
@@ -13,40 +13,52 @@ import com.sist.commons.DBUtil;
  */
 import com.sist.vo.*;
 public class MemberDAO {
-	// 전체적으로 사용 
-	  
-	// 1. 멤버 변수 및 DBUtil 객체 생성
     private Connection conn;
     private PreparedStatement ps;
-    private DBUtil db = new DBUtil(); // 공통 DB 도구 추가
     
+    // 1. 직접 연결을 위한 설정 정보 (Localhost 기준)
+    private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String USER = "hr";      // 본인 로컬 DB 계정 (예: hr)
+    private final String PWD = "happy";   // 본인 로컬 DB 비번
+
     private static MemberDAO dao;
-    
-    // 2. 싱글턴 패턴 (유지)
+
+    // 싱글턴 패턴 유지
     public static MemberDAO newInstance() {
         if(dao == null)
             dao = new MemberDAO();
         return dao;
     }
 
-    // 3. 오라클 연결 (DBUtil 활용)
+    // 2. 드라이버 등록 (생성자에서 한 번만 실행)
+    public MemberDAO() {
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        } catch(Exception ex) {
+            System.out.println("드라이버 로딩 실패: " + ex.getMessage());
+        }
+    }
+
+    // 3. 직접 오라클 연결
     public void getConnection() {
         try {
-            conn = db.getConnection();
+            conn = DriverManager.getConnection(URL, USER, PWD);
         } catch(Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    // 4. 오라클 해제 (DBUtil 활용)
+    // 4. 직접 연결 해제
     public void disConnection() {
         try {
-            db.disConnection(conn, ps);
+            if(ps != null) ps.close();
+            if(conn != null) conn.close();
         } catch(Exception ex) {
             ex.printStackTrace();
         }
     }
-	  
+
+
 	  // 기능 => 우편번호 검색 
 	  public List<ZipcodeVO> postFind(String dong)
 	  {
@@ -129,7 +141,7 @@ public class MemberDAO {
 			  getConnection();
 			  String sql="SELECT COUNT(*) "
 					    +"FROM member "
-					    +"WHERE memid=?";
+					    +"WHERE id=?";
 			  // 0 , 1 
 			  ps=conn.prepareStatement(sql);
 			  // ?에 값을 채운다 
@@ -215,7 +227,7 @@ public class MemberDAO {
 			  getConnection();
 			  String sql="SELECT COUNT(*) "
 					    +"FROM member "
-					    +"WHERE memid=?";
+					    +"WHERE id=?";
 			  // ID 존재여부 확인 
 			  ps=conn.prepareStatement(sql);
 			  ps.setString(1, id);
@@ -230,8 +242,8 @@ public class MemberDAO {
 			  }
 			  else // ID가 존재 
 			  {
-				  sql="SELECT pwd,memid,isadmin FROM member "
-					 +"WHERE memid=?";
+				  sql="SELECT pwd,id,isadmin FROM member "
+					 +"WHERE id=?";
 				  ps=conn.prepareStatement(sql);
 				  ps.setString(1, id);
 				  rs=ps.executeQuery();
