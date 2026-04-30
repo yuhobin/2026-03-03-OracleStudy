@@ -17,10 +17,8 @@ public class Join extends JFrame implements ActionListener, MouseListener {
     JComboBox box;
     JPasswordField pf;
     ControllerPanel cp;
-    
     IdCheckFrame idf=new IdCheckFrame();
     PostFindFrame post=new PostFindFrame();
-    
     // 데이터베이스 연동
     MemberDAO dao=new MemberDAO();
     public Join()

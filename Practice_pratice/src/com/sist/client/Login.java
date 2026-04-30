@@ -17,6 +17,7 @@ public class Login extends JFrame implements ActionListener{
     JTextField tf;
     JPasswordField pf;
     JButton b1,b2,b3;
+    static String myId;
    
     public Login()
     {
@@ -31,7 +32,7 @@ public class Login extends JFrame implements ActionListener{
         b1.addActionListener(this);
         b2.addActionListener(this);
         b3.addActionListener(this);
-     // 프레임 어디서든 엔터를 누르면 b1(로그인) 버튼이 눌린 것으로 간주함
+        // 프레임 어디서든 엔터를 누르면 b1(로그인) 버튼이 눌린 것으로 간주함
         this.getRootPane().setDefaultButton(b1);
         
         // 배치 => 실행과 동시에 실행 명령 => 초기화 => 생성자
@@ -58,7 +59,7 @@ public class Login extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-if(e.getSource() == b1) { // '로그인' 버튼을 눌렀을 때
+		if(e.getSource() == b1) { // '로그인' 버튼을 눌렀을 때
             
             String id = tf.getText();
             String pwd = String.valueOf(pf.getPassword());
@@ -77,7 +78,11 @@ if(e.getSource() == b1) { // '로그인' 버튼을 눌렀을 때
                 pf.requestFocus();
             } else {
                 // 로그인 성공! ("OK")
+            	myId=id;
                 JOptionPane.showMessageDialog(this, vo.getId() + "님 환영합니다.");	
+                UserMainForm.bLogin=true;
+                UserMainForm.isAdmin=vo.getIsadmin();
+                UserMainForm.myId=id;
                 new UserMainForm(); // 메인 창 띄우기
                 dispose();          // 현재 로그인 창 끄기
                 // 메인 화면을 새로 만들어서 띄웁니다.

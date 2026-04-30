@@ -7,8 +7,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 // [TODO] 팀원이 완성하면 아래 VO와 DAO의 import 경로를 확인
-// import com.sist.vo.OrdersVO; 
-// import com.sist.dao.BookDAO; 
+import com.sist.vo.LoanVO; 
+import com.sist.dao.BooksDAO; 
 
 public class MyPageForm extends JPanel implements ActionListener, MouseListener {
     JTable table;
@@ -17,7 +17,7 @@ public class MyPageForm extends JPanel implements ActionListener, MouseListener 
     ControllerPanel cp;
 
     // [TODO] 팀원의 DAO가 완성되면 아래 주석을 해제하고 연결
-    // BookDAO dao = new BookDAO(); 
+     BooksDAO dao = new BooksDAO(); 
 
     public MyPageForm(ControllerPanel cp) {
         this.cp = cp;
@@ -76,8 +76,8 @@ public class MyPageForm extends JPanel implements ActionListener, MouseListener 
 
         // -----------------------------------------------------------
         // [TODO] 팀원의 DAO와 VO가 준비되면 아래 로직을 작성
-        // 1. List<OrdersVO> list = dao.myOrdersListData(cp.myId); 호출
-        // 2. for(BorrowVO vo : list) 반복문 실행
+        // 1. List<LoanVO> list = dao.myOrdersListData(cp.myId); 호출
+        // 2. for(LoanVO vo : list) 반복문 실행
         // 3. ImageChange를 이용해 표지 이미지 생성
         // 4. model.addRow(new Object[]{ ... })로 데이터 추가
         // -----------------------------------------------------------
@@ -99,7 +99,7 @@ public class MyPageForm extends JPanel implements ActionListener, MouseListener 
                 
                 if (opt == JOptionPane.YES_OPTION) {
                     // [TODO] dao.ordersReturn(orderId) 호출 및 print() 재실행
-                    JOptionPane.showMessageDialog(this, "반납 처리가 요청되었습니다. (DAO 연결 필요)");
+                    JOptionPane.showMessageDialog(this, "반납 처리가 요청되었습니다.");
                 }
             }
         }
