@@ -35,3 +35,13 @@
 - **IDE:** Eclipse IDE
 - **VCS:** Git / GitHub
 - **Connectivity:** JDBC (ojdbc11, ojdbc8)
+
+---
+
+## 📂 Project Archive
+학습한 기술들을 실제로 적용해 본 프로젝트 목록입니다.
+
+| 프로젝트명 (기간) | 설명 및 담당 역할 | 사용 기술 | 링크 |
+| :--- | :--- | :--- | :--- |
+| **도서관리 시스템 (Kiosk)** <br> `26.04.20 - 26.04.30` | 자바 기반의 도서 대여/반납 키오스크 프로그램 <br> - **담당:** 로그인, 회원가입, 마이페이지 모듈 구현 <br> - **성과:** JDBC를 통한 DB 연동 및 Swing GUI 구현 | Java, Oracle SQL, JDBC, Swing | [보러가기](https://github.com/library-kiosk/2026-java-project) |
+| **(다음 프로젝트명)** <br> `26.00 - 26.00` | 프로젝트에 대한 간단한 설명과 본인이 맡은 역할 <br> - **담당:** OO 기능 구현, OO API 연동 등 | 사용한 기술 스택 | [보러가기](링크주소) |
