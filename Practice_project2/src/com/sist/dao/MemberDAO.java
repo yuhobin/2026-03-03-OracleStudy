@@ -16,7 +16,7 @@ public class MemberDAO {
     private Connection conn;
     private PreparedStatement ps;
     
-    // 1. 직접 연결을 위한 설정 정보 (Localhost 기준)
+    // 1. 직접 연결을 위한 설정 
     private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private final String USER = "hr";      // 본인 로컬 DB 계정 (예: hr)
     private final String PWD = "happy";   // 본인 로컬 DB 비번

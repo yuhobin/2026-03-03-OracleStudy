@@ -189,8 +189,8 @@ public class BooksDAO {
 //	        // 1. DB 연결
 //	        conn=db.getConnection();
 //	        
-//	        // 2. SQL 문장: 데이터를 삭제(DELETE)하지 않고 상태만 '반납완료'로 수정
-//	        // 현재 날짜(SYSDATE)를 반납일로 기록합니다.
+//	        // 2. SQL 문장: 데이터를 삭제하지 않고 상태만 '반납완료'로 수정
+//	        // SYSDATE를 반납일로 기록합니다.
 //	        String sql = "UPDATE orders SET status='반납완료', duedate=SYSDATE "
 //	                   + "WHERE orderid=" + orderid;
 //	        
@@ -207,6 +207,8 @@ public class BooksDAO {
 //	    }
 	}
 	
+	// 도서 대여 메커니즘 
+	// DB에 도서 데이터 불러오기
 	
 	
 	

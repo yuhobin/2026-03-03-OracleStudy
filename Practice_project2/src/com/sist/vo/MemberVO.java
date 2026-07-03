@@ -1,6 +1,6 @@
 package com.sist.vo;
 
-import java.sql.*;
+import java.util.*;
 
 import lombok.Data;
 

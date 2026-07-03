@@ -38,6 +38,7 @@ implements ActionListener
     	mp.b4.addActionListener(this);
     	mp.b6.addActionListener(this);
     	mp.b7.addActionListener(this);
+    	mp.b9.addActionListener(this);
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -69,6 +70,23 @@ implements ActionListener
 			cp.card.show(cp, "SUPPORT");
 			cp.sf.print();
 		}
+		else if (e.getSource() == mp.b9) { // 로그아웃 버튼 클릭 시
+	        int opt = JOptionPane.showConfirmDialog(this, "로그아웃 하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION);
+	        
+	        if (opt == JOptionPane.YES_OPTION) {
+	            // 1. 세션 정보 초기화 (static 변수들)
+	            bLogin = false;
+	            myId = "";
+	            isAdmin = "n";
+	            
+	            // 2. 현재 메인창 닫기
+	            this.dispose(); 
+	            
+	            // 3. 다시 로그인창 띄우기
+	            new Login(); 
+	        }
+	    }
+		
 	}
 
 }
